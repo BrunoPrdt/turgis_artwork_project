@@ -11,8 +11,7 @@ use App\Entity\Search;
 use App\Form\EggType;
 use App\Form\SearchType;
 use App\Repository\EggRepository;
-use App\Repository\PaintingRepository;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,18 +25,18 @@ class AdminEggController extends AbstractController
 {
 
     /**
-     * @var ObjectManager
-     */
-    private $objectManager;
-    /**
      * @var EggRepository
      */
     private $eggRepository;
+    /**
+     * @var ManagerRegistry
+     */
+    private $managerRegistry;
 
-    public function __construct(EggRepository $eggRepository, ObjectManager $objectManager)
+    public function __construct(EggRepository $eggRepository, ManagerRegistry $registry)
     {
         $this->eggRepository = $eggRepository;
-        $this->objectManager = $objectManager;
+        $this->managerRegistry = $registry;
     }
 
     /**

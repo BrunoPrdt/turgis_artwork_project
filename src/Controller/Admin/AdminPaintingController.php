@@ -11,7 +11,7 @@ use App\Entity\Search;
 use App\Form\PaintingType;
 use App\Form\SearchType;
 use App\Repository\PaintingRepository;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,14 +28,14 @@ class AdminPaintingController extends AbstractController
      */
     private $paintingRepository;
     /**
-     * @var ObjectManager
+     * @var ManagerRegistry
      */
-    private $objectManager;
+    private $managerRegistry;
 
-    public function __construct(PaintingRepository $paintingRepository, ObjectManager $objectManager)
+    public function __construct(PaintingRepository $paintingRepository, ManagerRegistry $registry)
     {
         $this->paintingRepository = $paintingRepository;
-        $this->objectManager = $objectManager;
+        $this->managerRegistry = $registry;
     }
 
     /**

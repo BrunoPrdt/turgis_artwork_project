@@ -29,7 +29,7 @@ class ContactController extends AbstractController{
 
 
         if ($form->isSubmitted() && $form->isValid()){
-            $contactNotification->notify($contact);
+            //$contactNotification->notify($contact);
             $this->addFlash('success', 'Votre message a bien été envoyé.');
             return $this->redirectToRoute('turgis.contact');
         }

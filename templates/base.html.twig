@@ -2,8 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="robots" content="noindex">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
         <!--                                   CDN import                                       -->
         <!-- Bootstrap -->
@@ -23,6 +23,14 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+        <!-- THREE IMAGE TRANSITION -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r75/three.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+        <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/bas2.js"></script>
+
+
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
        
 
         {% block stylesheets %}{% endblock %}
@@ -39,60 +47,64 @@
 
             <div class="collapse navbar-collapse" id="navbarColor02">
                 <ul class="navbar-nav mr-auto">
-                <li class="nav-item active dropdown">
-                    <a class="nav-link dropdown-toggle text-white " href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Dessins<span class="sr-only">(current)</span></a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{{ path('croquis_show')}}">Crayon, Croquis</a>
-                        <a class="dropdown-item" href="{{ path('china_show')}}">Encre Chine</a>
-                        <a class="dropdown-item" href="{{ path('apod_show')}}"> Encre de chine Apocalypse </a>
-                        <a class="dropdown-item" href="{{ path('fanta_show')}}"> Encre de chine Fantastique </a>
-                        <a class="dropdown-item" href="{{ path('color_show')}}">Crayon de Couleurs</a>
-                        </div>
-                </li>
-                
-                <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Sculptures
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="{{ path('carvingwoods')}}">Bois</a>
-                                    <a class="dropdown-item" href="{{ path('carvingstone')}}">Pierre</a>
-                                    </div>
-                </li>
-                    <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Peintures
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="{{ path('watercolors_show') }}">Aquarelles & Gouache</a>
-                                    <a class="dropdown-item" href="{{ path('classicalOil_show') }}">&Agrave; huile, style classique</a>
-                                    <a class="dropdown-item" href="{{ path('fantasticalOil_show') }}">&Agrave; huile, style fantastique</a>
-                                    <a class="dropdown-item" href="{{ path('surrealistOil_show') }}">&Agrave; huile, style surréaliste, thérapeutique & portrait</a>
-                                    <a class="dropdown-item" href="{{ path('laqueredOil_swhow') }}">Peintures laquées et vitraux</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-<a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Oeuvres Numèriques
-                        </a>
+                    <li class="nav-item active dropdown d-none">
+                        <a class="nav-link dropdown-toggle text-white " href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Dessins<span class="sr-only">(current)</span></a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{{ path('numarch_show') }}">Numérique Architecture </a>
-                        <a class="dropdown-item" href="{{ path('numerics_show') }}">Numérique</a>
-                        <a class="dropdown-item" href="{{ path('nzywuikx_show') }}">Zywuikx</a>
-                                                        </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="{{ path('eggs_page') }}">Oeufs décoratifs</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="{{ path('contact')}}">Contact</a>
-                                </li>
-                                {% if app.user %}
-                     <li class="nav-item">
-                        <a class="nav-link btn-light" href="{{ path('logout') }}">Déconnexion</a>
+                            <a class="dropdown-item disabled" href="{{ path('croquis_show')}}">Crayon, Croquis</a>
+                            <a class="dropdown-item disabled" href="{{ path('china_show')}}">Encre Chine</a>
+                            <a class="dropdown-item disabled" href="{{ path('apod_show')}}"> Encre de chine Apocalypse </a>
+                            <a class="dropdown-item disabled" href="{{ path('fanta_show')}}"> Encre de chine Fantastique </a>
+                            <a class="dropdown-item disabled" href="{{ path('color_show')}}">Crayon de Couleurs</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown d-none">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Sculptures</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item disabled" href="{{ path('carvingwoods')}}">Bois</a>
+                            <a class="dropdown-item disabled" href="{{ path('carvingstone')}}">Pierre</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Peintures</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{{ path('watercolors_show') }}">Aquarelles & Gouache</a>
+                            <a class="dropdown-item" href="{{ path('classicalOil_show') }}">&Agrave; huile, style classique</a>
+                            <a class="dropdown-item" href="{{ path('fantasticalOil_show') }}">&Agrave; huile, style fantastique</a>
+                            <a class="dropdown-item" href="{{ path('surrealistOil_show') }}">&Agrave; huile, style surréaliste, thérapeutique & portrait</a>
+                            <a class="dropdown-item" href="{{ path('laqueredOil_swhow') }}">Peintures laquées et vitraux</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown d-none">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Oeuvres Numèriques</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item disabled" href="{{ path('numarch_show') }}">Numérique Architecture </a>
+                            <a class="dropdown-item disabled" href="{{ path('numerics_show') }}">Numérique</a>
+                            <a class="dropdown-item disabled" href="{{ path('nzywuikx_show') }}">Zywuikx</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ path('eggs_page') }}">Oeufs décoratifs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ path('turgis.contact')}}">Contact</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if not app.user %}
+                    <li>
+                        <a class="nav-link text-white" href="{{ path('login') }}"><i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Login</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ path('logout') }}"><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Déconnexion</a>
                     </li>
                     {% endif %}
-                    
+
+                </ul>
             </div>
             </nav>
         </header>
@@ -103,8 +115,7 @@
 <footer class="page-footer font-small bg-dark ">
 
   <!-- Copyright -->
-  <div class="footer-copyright text-center text-white  py-3">© 2019 Copyright:
-  </div>
+  <div class="footer-copyright text-center text-white  py-3">© 2019 Copyright</div>
   <!-- Copyright -->
 
 </footer>
@@ -115,7 +126,7 @@
           <script type="text/javascript">
     //<!--
             {# Javascripts Kevin bloque le clique droit #}
-        document.oncontextmenu = new Function("return false"); 
+        //document.oncontextmenu = new Function("return false");
     //-->
     </script>
     </body>

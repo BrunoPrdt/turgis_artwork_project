@@ -49,6 +49,6 @@ security:
         # en dessous code baside pour connection avec http_basic
         #- { path: ^/admin/users, roles: ROLE_SUPER_ADMIN }
         #
-        - { path: ^/admin, roles: ROLE_ADMIN }
+        #- { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
 
